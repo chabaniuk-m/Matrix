@@ -7,7 +7,7 @@ Drob::Drob(int numerator, int denominator):
 	assert(denominator != 0);
 	if (m_denominator < 0)
 	{
-		if (m_denominator < 0)
+		if (m_numerator < 0)
 		{
 			m_numerator = fabs(m_numerator);
 			m_denominator = fabs(m_denominator);
@@ -50,6 +50,11 @@ Drob Drob::operator*(const Drob& otherDrob) const
 	multiplication.reduce();
 
 	return multiplication;
+}
+
+bool Drob::isNegative() const
+{
+	return (m_numerator * m_denominator) < 0;
 }
 
 Drob Drob::operator/(const Drob& otherDrob) const
