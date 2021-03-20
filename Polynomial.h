@@ -10,19 +10,23 @@ public:
 	Polynomial(const Polynomial& rhs);
 
 	void push(Monomial mon);							//додоємо одночлен до поліному
-	void value(int x) const;							//значення полінома в точці
+	Drob value(int x) const;							//значення полінома в точці
 	void simplify();									//звести подібні доданки (метод спочатку сортує)
-	void getGreatestDegree() const;
+	int getGreatestDegree();
+	Drob getFreeMember();
 	std::vector<Drob> getRoots() const;					//ГОЛОВНИЙ МЕТОД
 
-	Polynomial operator+ (const Polynomial& pol) const;	//сортувати вихідний поліном після кожної операції
+	Polynomial operator+ (const Polynomial& pol) const;	//сортувати і спрощувати вихідний поліном після кожної операції
 	Polynomial operator- (const Polynomial& pol) const;
-	Polynomial operator* (const Polynomial& pol) const;
-	Polynomial operator/ (const Polynomial& pol) const;
+	Polynomial operator* (const Polynomial& pol) const;	//працюватиме і з домноженням на число
+	Polynomial operator/ (Polynomial& pol);	//поліноми після simplify()
+	Polynomial& operator= (const Polynomial& pol);
 
+	friend std::ostream& operator<< (std::ostream& out, const Polynomial& pol);
 
 private:
-	void sort() const;									//сортуємо від найбільшого до найменшого степеня
-
+	Polynomial() {}
+	void sort();									//сортуємо від найбільшого до найменшого степеня
+	bool isKSmaller(const Monomial* k, const Monomial* m) const;
 };
 
