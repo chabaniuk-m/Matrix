@@ -141,11 +141,13 @@
   <ItemGroup>
     <ClInclude Include="Drob.h" />
     <ClInclude Include="Monomial.h" />
+    <ClInclude Include="Polynomial.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Drob.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Monomial.cpp" />
+    <ClCompile Include="Polynomial.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
