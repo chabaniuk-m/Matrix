@@ -13,6 +13,7 @@ public:
 	int getDenominator() const;
 
 	void reduce();
+	bool isNegative() const;
 	Drob operator* (const Drob& otherDrob) const;
 	Drob operator/ (const Drob& otherDrob) const;
 	Drob operator+ (const Drob& otherDrob) const;
