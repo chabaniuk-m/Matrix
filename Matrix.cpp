@@ -12,10 +12,18 @@ void Matrix::initialize()
 	while (!ss.eof())
 	{
 		ss >> a;
+		if (ss.fail())																//обробляємо помилку некоректного введеня елемента матриці
+		{
+			std::cout << "Уупс.! Некоректний елемент. Введіть матрицю ще раз\n";
+			ss.clear();
+			ss.ignore();
+			initialize();
+			return;
+		}
 		row.push_back(a);
 	}
 	m_matrix.push_back(row);
-	size_t N = row.size();
+	size_t N = row.size();															//перший рядок визначає розмір матриці
 	for (size_t i = 1; i < N; ++i)
 	{
 		std::getline(std::cin, str);
@@ -23,19 +31,28 @@ void Matrix::initialize()
 		size_t counter = 0;
 		while (!ss.eof())
 		{
-			++counter;
-			if (counter > N)
+			ss >> a;
+			if (ss.fail())															//обробляємо помилку некоректного введеня елемента матриці
 			{
-				std::cout << "Кількість стовпців не відповідає першому рядку. Спробуйте ще раз\n\n";
+				std::cout << "Уупс.! Некоректний елемент. Введіть матрицю ще раз\n";
+				ss.clear();
+				ss.ignore();
 				initialize();
 				return;
 			}
-			ss >> a;
+			++counter;
+			if (counter > N)														//обробляємо помилку невідповідності к-сті елементів в рядку
+			{
+				std::cout << "Кількість стовпців більше ніж в першому рядку. Спробуйте ще раз\n\n";
+				initialize();
+				return;
+			}
 			row[counter - 1] = a;
 		}
+		ss.ignore();
 		if (counter < N)
 		{
-			std::cout << "Кількість стовпців не відповідає першому рядку. Спробуйте ще раз\n\n";
+			std::cout << "Кількість стовпців менше ніж в першому рядку. Спробуйте ще раз\n\n";
 			initialize();
 			return;
 		}
