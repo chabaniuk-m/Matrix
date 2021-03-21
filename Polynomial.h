@@ -16,7 +16,7 @@ public:
 	int getLeastDegree();
 	int getGreatestDegree();
 	Drob getFreeMember();
-	std::vector<Drob> getRoots();					//ГОЛОВНИЙ МЕТОД - знаходить цілі корені
+	std::vector<int> getRoots();					//ГОЛОВНИЙ МЕТОД - знаходить цілі корені
 
 	Polynomial operator+ (const Polynomial& pol) const;	//сортувати і спрощувати вихідний поліном після кожної операції
 	Polynomial operator- (const Polynomial& pol) const;

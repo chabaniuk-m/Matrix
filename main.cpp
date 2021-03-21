@@ -1,36 +1,38 @@
-#include "Polynomial.h"
-#include <cassert>
+#include "Matrix.h"
+#include <Windows.h>
 
-bool test()
+void showRoots(std::vector<int> roots)
 {
-	Polynomial a(6);
-	Polynomial b(3);
-	Polynomial c(-1);
-	Polynomial d(6);
-	Polynomial e(0);
-
-
-	a.push(Monomial(-1, 1));
-	b.push(Monomial(1, 1));
-	c.push(Monomial(1, 1));
-	d.push(Monomial(Drob(1), 1));
-	e.push(Monomial(1, 4));
-
-	Polynomial divided = a * b * c * d * e;
-
-	std::cout << divided << "\n";
-
-	std::vector<Drob> v{ divided.getRoots() };
-
-	for (auto& k : v)
+	std::cout << "Власні числа:\n";
+	int number = 0;
+	int pre_root = INT_MAX;
+	for (auto& k : roots)
 	{
-		std::cout << k << " ";
+		if (pre_root == INT_MAX)
+		{
+			std::cout << "l" << number++ << " = ";
+			pre_root = k;
+		}
+		else if (k == pre_root)
+		{
+			std::cout << "l" << number++ << " = ";
+		}
+		else
+		{
+			std::cout << pre_root << "\n";
+			std::cout << "l" << number++ << " = ";
+			pre_root = k;
+		}
 	}
-
-	return false;
+	std::cout << pre_root;
 }
 
 int main()
 {
-	test();
+	SetConsoleOutputCP(1251);
+	Matrix matrix;
+	matrix.initialize();
+	showRoots(matrix.getEigenValues());
+
+	return 0;
 }
